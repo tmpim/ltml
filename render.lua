@@ -27,9 +27,13 @@ local function loneTag(element)
     return "<" .. element.name .. attributes(element) .. " />"
 end
 
-render.renderElement = function(element)
+render.renderElement = function(element, escape)
     if type(element) == "string" or type(element) == "number" then
-        return utils.htmlSpecialChars(element)
+        if escape == false then
+            return element
+        else
+            return utils.htmlSpecialChars(element)
+        end
     elseif element.name == "comment" then
         return render.renderComment(element)
     elseif element.name == "doctype" then
@@ -48,18 +52,18 @@ render.renderTag = function(element)
 end
 
 function render.renderComment(element)
-    return "<!-- " .. element.text .. " -->"
+    return "<!-- " .. render.renderAll(element.children, false):gsub("-", "–") .. " -->"
 end
 
 function render.renderDoctype(element)
-    return "<!DOCTYPE " .. element.type ..">"
+    return "<!DOCTYPE " .. render.renderAll(element.children) ..">"
 end
 
-function render.renderAll(elements)
+function render.renderAll(elements, escape)
     local result = ""
 
     for _, element in pairs(elements) do
-        result = result .. render.renderElement(element)
+        result = result .. render.renderElement(element, escape)
     end
 
     return result

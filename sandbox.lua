@@ -49,18 +49,4 @@ function sandbox.raw(data)
     return tag(data.name, data.attributes, data.children)
 end
 
-function sandbox.doctype(type)
-    return {
-        name = "doctype",
-        type = type
-    }
-end
-
-function sandbox.comment(text)
-    return {
-        name = "comment",
-        text = text
-    }
-end
-
 return sandbox
