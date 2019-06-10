@@ -6,7 +6,7 @@ html {
     },
     body {
         h1 "LTML Example",
-        p "Hello, world!",
-        img { src = "http://www.lua.org/manual/5.3/logo.gif" }
+        p { data.message },
+        img { src = data.img }
     }
 }

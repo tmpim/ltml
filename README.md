@@ -13,7 +13,9 @@ html {
         title "LTML Example"
     },
     body {
-        p "Hello, world!"
+        h1 "LTML Example",
+        p { data.message },
+        img { src = data.img }
     }
 }
 ```
@@ -36,4 +38,4 @@ This renders to (prettified for readability):
 Example code for executing and rendering templates can be found in [example.lua](https://github.com/tmpim/ltml/blob/master/example.lua)
 
 # Disclaimer
-LTML is a very immature library and current lacks HTML escaping, so utilize it with caution.
+LTML is a very immature library and currently lacks HTML escaping, so utilize it with caution.
