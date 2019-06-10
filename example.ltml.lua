@@ -1,28 +1,12 @@
 doctype "html",
-comment "This page was rendered with LTML",
+comment "This page was rendered with <3 by LTML",
 html {
     head {
-        title { data.message }
+        title "LTML Example"
     },
     body {
-        h1 "LTML says hi",
-        p { data.message },
-        img {
-            src = "https://www.lua.org/images/luaa.gif"
-        },
-        br,
-        tag "faketag" {
-            "hello"
-        },
-        br,
-        raw {
-            name = "a",
-            attributes = {
-                href = "https://google.com"
-            },
-            children = {
-                "Click here for google."
-            }
-        }
+        h1 "LTML Example",
+        p "Hello, world!",
+        img { src = "http://www.lua.org/manual/5.3/logo.gif" }
     }
 }
