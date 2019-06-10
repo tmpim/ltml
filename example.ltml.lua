@@ -7,6 +7,7 @@ html {
     body {
         h1 "LTML Example",
         p { data.message },
+        br,
         img { src = data.img }
     }
 }

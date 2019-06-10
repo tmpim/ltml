@@ -1,38 +1,61 @@
+local utils = require("utils")
 local render = {}
 
-render.renderElement = function(element)
-    if type(element) == "string" or type(element) == "number" then
-        return element
-    end
-
-    local result = "<" .. element.name
+local function attributes(element)
+    local result = ""
 
     for key, value in pairs(element.attributes) do
         if value == true then
             result = result .. " " .. key
         else
-            result = result .. " " .. key .. "=\"" .. value .. "\""
+            result = result .. " " .. key .. "=\"" .. utils.htmlSpecialChars(value) .. "\""
         end
-    end
-
-    if #element.children > 0 then
-        result = result..">"
-
-        local count = 0
-        for _, child in pairs(element.children) do
-            result = result .. render.renderElement(child)
-            count = count + 1
-        end
-
-        result = result .. "</" .. element.name .. ">"
-    else
-        result = result.." />"
     end
 
     return result
 end
 
-render.renderAll = function(elements)
+local function openTag(element)
+    return "<" .. element.name .. attributes(element) .. ">"
+end
+
+local function closeTag(element)
+    return "</" .. element.name .. ">"
+end
+
+local function loneTag(element)
+    return "<" .. element.name .. attributes(element) .. " />"
+end
+
+render.renderElement = function(element)
+    if type(element) == "string" or type(element) == "number" then
+        return utils.htmlSpecialChars(element)
+    elseif element.name == "comment" then
+        return render.renderComment(element)
+    elseif element.name == "doctype" then
+        return render.renderDoctype(element)
+    else
+        return render.renderTag(element)
+    end
+end
+
+render.renderTag = function(element)
+    if #element.children > 0 then
+        return openTag(element) .. render.renderAll(element.children) .. closeTag(element)
+    else
+        return loneTag(element)
+    end
+end
+
+function render.renderComment(element)
+    return "<!-- " .. element.text .. " -->"
+end
+
+function render.renderDoctype(element)
+    return "<!DOCTYPE " .. element.type ..">"
+end
+
+function render.renderAll(elements)
     local result = ""
 
     for _, element in pairs(elements) do

@@ -4,6 +4,8 @@ local utils = require("utils")
 local tagMetatable = {}
 
 local function callTag(self, data)
+    self = utils.deepCopy(self)
+
     if type(data) == "string" then
         table.insert(self.children, data)
     elseif type(data) == "table" then
@@ -36,17 +38,7 @@ end
 local sandbox = {}
 
 for _, tagName in pairs(tags) do
-    sandbox[tagName] = function(data)
-        return tag(tagName)(data)
-    end
-end
-
-function sandbox.doctype(type)
-    return "<!DOCTYPE " .. type .. ">"
-end
-
-function sandbox.comment(text)
-    return "<!-- " .. text .. " -->"
+    sandbox[tagName] = tag(tagName)
 end
 
 function sandbox.tag(name)
@@ -57,6 +49,18 @@ function sandbox.raw(data)
     return tag(data.name, data.attributes, data.children)
 end
 
-sandbox.br = "<br>"
+function sandbox.doctype(type)
+    return {
+        name = "doctype",
+        type = type
+    }
+end
+
+function sandbox.comment(text)
+    return {
+        name = "comment",
+        text = text
+    }
+end
 
 return sandbox
