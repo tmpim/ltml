@@ -1,5 +1,4 @@
 local ltml = require("ltml")
-local render = require("ltml.render")
 local utils = require("ltml.utils")
 
 local template = utils.readAll("example/example.ltml.lua")
@@ -10,5 +9,5 @@ local data = {
 }
 
 local htmlTree = ltml.execute(template, { data = data })
-local htmlSource = render.renderAll(htmlTree)
+local htmlSource = ltml.render(htmlTree)
 utils.writeAll("example/example.html", htmlSource)

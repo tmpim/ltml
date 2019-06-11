@@ -1,6 +1,7 @@
 local ltml = {}
 local sandbox = require("ltml.sandbox")
 local utils   = require("ltml.utils")
+local render  = require("ltml.render")
 
 function ltml.execute(template, data)
     local env = sandbox(utils.deepCopy(data or {}))
@@ -22,5 +23,7 @@ function ltml.execute(template, data)
     local result = {}
     return utils.flatten(result, root())
 end
+
+ltml.render = render.renderAll
 
 return ltml
