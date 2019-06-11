@@ -1,12 +1,25 @@
 # LTML
-A simple templating engine that takes advantage of elegant Lua syntax.
+A simple and concise templating engine that takes advantage of elegant Lua syntax.
 
 # Explanation
-LTML utilizes Lua's tables and lack of parentheses around table and string literals to allow for a simple template syntax that can be easily rendered as HTML. LTML is portable enough to run in any typical Lua environment, given you can use `setfenv` (<5.1) or `load` (5.2+).
+LTML utilizes Lua's tables and optional parentheses around table and string literals to allow for a simple template syntax that can be easily rendered as HTML. LTML is portable enough to run in any typical Lua environment, given you can use `setfenv` (<5.1) or `load` (5.2+). It is even possible to [run LTML in the browser](https://github.com/tmpim/ltml-react).
 
 # Example
 ```lua
+-- `data` is a variable supplied when executing the template.
+-- {
+--     message = "This page was created using only Lua (no HTML, JS, CSS) with LTML!",
+--     img     = "http://www.lua.org/manual/5.3/logo.gif"
+-- }
+
+-- Defining variables within your templates is simple!
+def "cool_message" ( data.message:reverse() ),
+def "groceries" { "Milk", "Eggs", "Bread" },
+-- Define components which can be used within your templates!
+def "item" ( function(name) return li { name } end ),
+
 doctype "html",
+-- Comments can be rendered!
 comment "This page was rendered with <3 by LTML",
 html {
     head {
@@ -15,7 +28,20 @@ html {
     body {
         h1 "LTML Example",
         p { data.message },
-        img { src = data.img }
+        p { cool_message },
+        br,
+        -- Attributes and contents can be described in the same object!
+        a { href = "https://justyn.is", "Check out my blog!" },
+        
+        -- Alternatively, you can define attributes and contents in chains.
+        a { href = "https://github.com/tmpim/ltml" } "LTML is awesome!",
+        
+        img { src = data.img },
+        h2 "Grocery list:",
+        -- Dynamically generated content is easy!
+        ul {
+            map (groceries, item)
+        }
     }
 }
 ```
@@ -30,8 +56,18 @@ This renders to (prettified for readability):
     </head>
     <body>
         <h1>LTML Example</h1>
-        <p>Hello, world!</p>
+        <p>This page was created using only Lua (no HTML, JS) with LTML!</p>
+        <p>!LMTL htiw )SSC ,SJ ,LMTH on( auL ylno gnisu detaerc saw egap sihT</p>
+        <br />
+        <a href="https://justyn.is">Check out my blog!</a>
+        <a href="https://github.com/tmpim/ltml">LTML is awesome!</a>
         <img src="http://www.lua.org/manual/5.3/logo.gif" />
+        <h2>Grocery list:</h2>
+        <ul>
+            <li>Milk</li>
+            <li>Eggs</li>
+            <li>Bread</li>
+        </ul>
     </body>
 </html>
 ```

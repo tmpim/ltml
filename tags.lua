@@ -7,7 +7,10 @@ return {
     "a",
     "img",
     "h1",
+    "h2",
     "br",
     "doctype",
-    "comment"
+    "comment",
+    "ul",
+    "li"
 }

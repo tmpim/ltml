@@ -1,9 +1,9 @@
 local ltml = {}
-local ltmlEnv = require("sandbox")
+local sandbox = require("sandbox")
 local utils   = require("utils")
 
 function ltml.execute(template, data)
-    local env = utils.shallowMerge(data, ltmlEnv)
+    local env = sandbox(utils.deepCopy(data))
 
     local root
     if type(template) == "string" then

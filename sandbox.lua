@@ -13,7 +13,13 @@ local function callTag(self, data)
             if type(k) == "string" then
                 self.attributes[k] = v
             elseif type(k) == "number" then
-                table.insert(self.children, v)
+                if type(v) == "table" and (#v > 0 or v.name == nil) then
+                    for i, c in ipairs(v) do
+                        table.insert(self.children, c)
+                    end
+                else
+                    table.insert(self.children, v)
+                end
             end
         end
     end
@@ -35,18 +41,67 @@ local function tag(name, attributes, children)
     return tag
 end
 
-local sandbox = {}
+local function set(env, name, value)
+    if type(name) == "string" then
+        name = utils.splitVar(name)
+    end
+    local e = env
 
-for _, tagName in pairs(tags) do
-    sandbox[tagName] = tag(tagName)
+    for i, v in ipairs(name) do
+        if i ~= #name then
+            e = e[v]
+        end
+    end
+
+    e[name[#name]] = value
 end
 
-function sandbox.tag(name)
-    return tag(name)
+local function get(env, name)
+    if type(name) == "string" then
+        name = utils.splitVar(name)
+    end
+    local e = env
+
+    for i, v in ipairs(name) do
+        e = e[v]
+    end
+
+    return e
 end
 
-function sandbox.raw(data)
-    return tag(data.name, data.attributes, data.children)
-end
+return function(sandbox)
+    for _, tagName in pairs(tags) do
+        sandbox[tagName] = tag(tagName)
+    end
 
-return sandbox
+    function sandbox.tag(name)
+        return tag(name)
+    end
+
+    function sandbox.raw(data)
+        return tag(data.name, data.attributes, data.children)
+    end
+
+    function sandbox.def(name)
+        return function(...)
+            local args = {...}
+            if #args > 1 then
+                set(sandbox, name, args)
+            else
+                set(sandbox, name, args[1])
+            end
+        end
+    end
+
+    function sandbox.map(list, func)
+        local results = {}
+
+        for _, v in ipairs(list) do
+            table.insert(results, func(v))
+        end
+
+        return results
+    end
+
+    return sandbox
+end

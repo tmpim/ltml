@@ -34,6 +34,8 @@ render.renderElement = function(element, escape)
         else
             return utils.htmlSpecialChars(element)
         end
+    elseif type(element) == "nil" or type(element) == "function" then
+        return
     elseif element.name == "comment" then
         return render.renderComment(element)
     elseif element.name == "doctype" then

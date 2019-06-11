@@ -59,4 +59,14 @@ function utils.count(tbl)
     return count
 end
 
+function utils.splitVar(var)
+    local result = {}
+
+    for value in string.gmatch(var, "[^%.]+") do
+        table.insert(result, value)
+    end
+
+    return result
+end
+
 return utils
