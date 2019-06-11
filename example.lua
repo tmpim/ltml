@@ -2,7 +2,7 @@ local ltml = require("ltml")
 local render = require("render")
 local utils = require("utils")
 
-local template = utils.readAll("example.ltml.lua")
+local template = utils.readAll("example/example.ltml.lua")
 
 local data = {
     message = "This page was created using only Lua (no HTML, JS, CSS) with LTML!",
@@ -11,4 +11,4 @@ local data = {
 
 local htmlTree = ltml.execute(template, { data = data })
 local htmlSource = render.renderAll(htmlTree)
-utils.writeAll("example.html", htmlSource)
+utils.writeAll("example/example.html", htmlSource)
