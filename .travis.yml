@@ -10,11 +10,11 @@ env:
 
 before_install:
   - pip install hererocks
-  - hererocks lua_install -r^ --$LUA
-  - export PATH=$PATH:$PWD/lua_install/bin # Add directory with all installed binaries to PATH
+  - hererocks lua_install --$LUA -rlatest
+  - source env/bin/activate
 
 install:
-  - sudo -E luarocks make
+  - luarocks make
 
 script:
   - lua test.lua
