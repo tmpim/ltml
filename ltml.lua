@@ -4,13 +4,15 @@ local utils   = require("ltml.utils")
 local render  = require("ltml.render")
 
 function ltml.execute(template, data)
-    local env = sandbox(utils.deepCopy(data or {}))
+    local env = {}
+    sandbox(env)
+    utils.shallowCopy(data, env)
 
     local root
-    if type(template) == "string" then
-        root = "return { "..template.." }"
-    else
+    if type(template) == "function" then
         root = string.dump(template)
+    else
+        root = template
     end
 
     if setfenv then

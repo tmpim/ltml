@@ -1,3 +1,5 @@
+return {
+    
 -- `data` is a variable supplied when executing the template.
 -- {
 --     message = "This page was created using only Lua (no HTML, JS, CSS) with LTML!",
@@ -35,4 +37,6 @@ html {
             map (groceries, item)
         }
     }
+}
+
 }

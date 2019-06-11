@@ -64,6 +64,8 @@ local function get(env, name)
 end
 
 return function(sandbox)
+    sandbox = sandbox or {}
+    
     for _, tagName in pairs(tags) do
         sandbox[tagName] = tag(tagName)
     end
