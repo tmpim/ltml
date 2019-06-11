@@ -28,18 +28,6 @@ function util_tests.equals_empty_object()
     return utils.equals({}, {})
 end
 
-function util_tests.keys_test_object()
-    local keys = utils.keys(test_object())
-
-    return utils.equals(keys, {"children", "name", "attributes"})
-end
-
-function util_tests.keys_empty_object()
-    local keys = utils.keys({})
-
-    return utils.equals(keys, {})
-end
-
 function util_tests.shallowCopy_test_object()
     local copy = utils.shallowCopy(test_object())
 
