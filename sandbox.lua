@@ -13,13 +13,7 @@ local function callTag(self, data)
             if type(k) == "string" then
                 self.attributes[k] = v
             elseif type(k) == "number" then
-                if type(v) == "table" and (#v > 0 or v.name == nil) then
-                    for i, c in ipairs(v) do
-                        table.insert(self.children, c)
-                    end
-                else
-                    table.insert(self.children, v)
-                end
+                utils.flatten(self.children, v)
             end
         end
     end
@@ -90,6 +84,8 @@ return function(sandbox)
             else
                 set(sandbox, name, args[1])
             end
+
+            return {}
         end
     end
 

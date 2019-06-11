@@ -3,7 +3,7 @@ local sandbox = require("sandbox")
 local utils   = require("utils")
 
 function ltml.execute(template, data)
-    local env = sandbox(utils.deepCopy(data))
+    local env = sandbox(utils.deepCopy(data or {}))
 
     local root
     if type(template) == "string" then
@@ -19,7 +19,8 @@ function ltml.execute(template, data)
         root = load(root, nil, nil, env)
     end
 
-    return root()
+    local result = {}
+    return utils.flatten(result, root())
 end
 
 return ltml
