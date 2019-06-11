@@ -129,6 +129,10 @@ function utils.ansiSupported()
         supported = os.getenv("ANSICON")
     end
 
+    if os.getenv("TERM"):lower():find("xterm") then
+        supported = true
+    end
+
     return supported
 end
 
@@ -146,7 +150,7 @@ local colors = {
 
 function utils.color(color, text)
     if utils.ansiSupported() then
-        return "\27[" .. colors[color] .."b" .. text .. "\27[0b"
+        return "\27[" .. colors[color] .."m" .. text .. "\27[0m"
     else
         return text
     end
