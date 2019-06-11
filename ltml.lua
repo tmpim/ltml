@@ -6,7 +6,7 @@ local render  = require("ltml.render")
 function ltml.execute(template, data)
     local env = {}
     sandbox(env)
-    utils.shallowCopy(data, env)
+    utils.shallowCopy(data or {}, env)
 
     local root
     if type(template) == "function" then

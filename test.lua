@@ -42,3 +42,6 @@ for category, list in pairs(tests) do
 end
 
 print(passedTests .. " tests passed, " .. failedTests .. " tests failed.")
+if failedTests > 0 then
+    os.exit(1)
+end
