@@ -1,4 +1,4 @@
-local render = require("render")
+local render = require("ltml.render")
 local render_tests = {}
 
 return render_tests

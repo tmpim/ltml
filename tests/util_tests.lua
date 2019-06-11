@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("ltml.utils")
 local util_tests = {}
 
 local function test_object()

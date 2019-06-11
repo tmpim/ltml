@@ -1,6 +1,6 @@
 local ltml = {}
-local sandbox = require("sandbox")
-local utils   = require("utils")
+local sandbox = require("ltml.sandbox")
+local utils   = require("ltml.utils")
 
 function ltml.execute(template, data)
     local env = sandbox(utils.deepCopy(data or {}))

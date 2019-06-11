@@ -1,5 +1,5 @@
-local tags  = require("tags")
-local utils = require("utils")
+local tags  = require("ltml.tags")
+local utils = require("ltml.utils")
 
 local tagMetatable = {}
 

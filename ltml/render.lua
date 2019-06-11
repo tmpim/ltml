@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("ltml.utils")
 local render = {}
 
 local function attributes(element)

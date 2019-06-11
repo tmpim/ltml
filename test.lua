@@ -1,5 +1,5 @@
-local utils = require("utils")
-local color = utils.ansiColor
+local utils = require("ltml.utils")
+
 local test_imports = {
     "render_tests",
     "sandbox_tests",

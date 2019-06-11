@@ -1,6 +1,6 @@
 local ltml = require("ltml")
-local render = require("render")
-local utils = require("utils")
+local render = require("ltml.render")
+local utils = require("ltml.utils")
 local files = {...}
 
 for _, v in pairs(files) do

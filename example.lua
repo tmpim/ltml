@@ -1,6 +1,6 @@
 local ltml = require("ltml")
-local render = require("render")
-local utils = require("utils")
+local render = require("ltml.render")
+local utils = require("ltml.utils")
 
 local template = utils.readAll("example/example.ltml.lua")
 
