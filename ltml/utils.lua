@@ -119,4 +119,37 @@ function utils.flatten(a, b)
     return a
 end
 
+local function isWindows()
+    return type(package) == 'table' and type(package.config) == 'string' and package.config:sub(1,1) == '\\'
+end
+
+function utils.ansiSupported()
+    local supported = not isWindows()
+    if isWindows() then
+        supported = os.getenv("ANSICON")
+    end
+
+    return supported
+end
+
+local colors = {
+    reset     = 0,
+    black     = 30,
+    red       = 31,
+    green     = 32,
+    yellow    = 33,
+    blue      = 34,
+    magenta   = 35,
+    cyan      = 36,
+    white     = 37
+}
+
+function utils.color(color, text)
+    if utils.ansiSupported() then
+        return "\27[" .. colors[color] .."b" .. text .. "\27[0b"
+    else
+        return text
+    end
+end
+
 return utils

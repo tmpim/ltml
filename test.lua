@@ -1,4 +1,5 @@
 local utils = require("ltml.utils")
+local color = utils.color
 
 local test_imports = {
     "render_tests",
@@ -30,10 +31,10 @@ for category, list in pairs(tests) do
         local status, value = pcall(test)
 
         if status and value then
-            print("  [PASS] " .. name)
+            print("  [" .. color("green", "PASS") .. "] " .. name)
             passedTests = passedTests + 1
         else
-            print("  [FAIL] " .. name)
+            print("  [" .. color("red", "FAIL") .. "] " .. name)
             print("    !!! ERROR !!!: " .. tostring(value))
             failedTests = failedTests + 1
         end
