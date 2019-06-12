@@ -125,6 +125,7 @@ end
 
 function utils.ansiSupported()
     local supported = not isWindows()
+    
     if isWindows() then
         supported = os.getenv("ANSICON")
     end

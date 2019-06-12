@@ -13,6 +13,10 @@ dependencies = {}
 build = {
    type = "builtin",
    modules = {
-      ltml = "ltml.lua"
+      ltml = "ltml.lua",
+      ["ltml.sandbox"] = "ltml/sandbox.lua",
+      ["ltml.render"] = "ltml/render.lua",
+      ["ltml.tags"] = "ltml/tags.lua",
+      ["ltml.utils"] = "ltml/utils.lua"
    }
 }
