@@ -1,4 +1,6 @@
-return {
+local tags = {}
+
+tags.list = {
     -- LTML special tags
     "comment",
     "doctype",
@@ -149,3 +151,11 @@ return {
     "wbr",
     "xmp"
 }
+
+tags.lookup = {}
+
+for _, v in pairs(tags.list) do
+    tags.lookup[v] = true
+end
+
+return tags

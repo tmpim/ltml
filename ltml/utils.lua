@@ -130,7 +130,8 @@ function utils.ansiSupported()
         supported = os.getenv("ANSICON")
     end
 
-    if os.getenv("TERM"):lower():find("xterm") then
+    local term = os.getenv("TERM")
+    if term and term:lower():find("xterm") then
         supported = true
     end
 
@@ -155,6 +156,34 @@ function utils.color(color, text)
     else
         return text
     end
+end
+
+function utils.envSet(env, name, value)
+    if type(name) == "string" then
+        name = utils.splitVar(name)
+    end
+    local e = env
+
+    for i, v in ipairs(name) do
+        if i ~= #name then
+            e = e[v]
+        end
+    end
+
+    e[name[#name]] = value
+end
+
+function utils.envGet(env, name)
+    if type(name) == "string" then
+        name = utils.splitVar(name)
+    end
+    local e = env
+
+    for i, v in ipairs(name) do
+        e = e[v]
+    end
+
+    return e
 end
 
 return utils
