@@ -18,6 +18,8 @@ local function test_object()
     }
 end
 
+local testPhrase = "Hello, world!"
+
 function util_tests.equals_test_object()
     local a, b = test_object(), test_object()
 
@@ -116,6 +118,32 @@ function util_tests.flatten_multi_level()
     return utils.equals(flat, {
         test_object()
     })
+end
+
+function util_tests.envSet_single_level()
+    local env = {}
+    utils.envSet(env, "test", testPhrase)
+
+    return utils.equals(env.test, testPhrase)
+end
+
+function util_tests.envSet_multi_level()
+    local env = {}
+    utils.envSet(env, "test.test", testPhrase)
+
+    return utils.equals(env.test.test, testPhrase)
+end
+
+function util_tests.envGet_single_level()
+    local env = { test = testPhrase }
+
+    return utils.equals(utils.envGet(env, "test"), testPhrase)
+end
+
+function util_tests.envGet_multi_level()
+    local env = { test = { test = testPhrase } }
+
+    return utils.equals(utils.envGet(env, "test.test"), testPhrase)
 end
 
 return util_tests

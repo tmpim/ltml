@@ -166,11 +166,15 @@ function utils.envSet(env, name, value)
 
     for i, v in ipairs(name) do
         if i ~= #name then
+            if e[v] == nil then
+                e[v] = {}
+            end
             e = e[v]
         end
     end
 
     e[name[#name]] = value
+    return env
 end
 
 function utils.envGet(env, name)
