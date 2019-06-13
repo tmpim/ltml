@@ -31,17 +31,17 @@ for category, list in pairs(tests) do
         local status, value = pcall(test)
 
         if status and value then
-            print("  [" .. color("green", "PASS") .. "] " .. name)
+            print("  [" .. color.green("PASS") .. "] " .. name)
             passedTests = passedTests + 1
         else
-            print("  [" .. color("red", "FAIL") .. "] " .. name)
-            print("    !!! ERROR !!!: " .. tostring(value))
+            print("  [" .. color.red("FAIL") .. "] " .. name)
+            print("    !!! " .. color.red("ERROR") .. "!!!: " .. tostring(value))
             failedTests = failedTests + 1
         end
     end
 end
 
-print(passedTests .. " tests passed, " .. failedTests .. " tests failed.")
+print(color.green(passedTests) .. " tests passed, " .. color.red(failedTests) .. " tests failed.")
 if failedTests > 0 then
     os.exit(1)
 end

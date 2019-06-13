@@ -150,11 +150,15 @@ local colors = {
     white     = 37
 }
 
-function utils.color(color, text)
-    if utils.ansiSupported() then
-        return "\27[" .. colors[color] .."m" .. text .. "\27[0m"
-    else
-        return text
+utils.color = {}
+
+for k, v in pairs(colors) do
+    utils.color[k] = function(text)
+        if utils.ansiSupported() then
+            return "\27[" .. v .."m" .. text .. "\27[0m"
+        else
+            return text
+        end
     end
 end
 
