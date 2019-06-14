@@ -62,7 +62,7 @@ function utils.deepCopy(orig)
             copy[utils.deepCopy(orig_key)] = utils.deepCopy(orig_value)
         end
         setmetatable(copy, utils.deepCopy(getmetatable(orig)))
-    else -- number, string, boolean, etc
+    else
         copy = orig
     end
 
@@ -192,6 +192,10 @@ function utils.envGet(env, name)
     end
 
     return e
+end
+
+function utils.loadTemplateFromFile(filename)
+    return "return {" .. utils.readAll(filename) .. "}"
 end
 
 return utils

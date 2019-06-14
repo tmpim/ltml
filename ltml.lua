@@ -4,9 +4,7 @@ local utils   = require("ltml.utils")
 local render  = require("ltml.render")
 
 function ltml.execute(template, data)
-    local env = {}
-    sandbox(env)
-    utils.shallowCopy(data or {}, env)
+    local env = sandbox(data)
 
     local root
     if type(template) == "function" then
@@ -24,6 +22,12 @@ function ltml.execute(template, data)
 
     local result = {}
     return utils.flatten(result, root())
+end
+
+function ltml.compile(template)
+    return function(data)
+        ltml.execute(template, data)
+    end
 end
 
 ltml.render = render.renderAll

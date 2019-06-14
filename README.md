@@ -6,22 +6,11 @@ LTML utilizes Lua's tables and optional parentheses around table and string lite
 
 # Example
 ```lua
-return {
-
--- `data` is a variable supplied when executing the template.
--- {
---     message = "This page was created using only Lua (no HTML, JS, CSS) with LTML!",
---     img     = "http://www.lua.org/manual/5.3/logo.gif"
--- }
-
--- Defining variables within your templates is simple!
 def "cool_message" ( data.message:reverse() ),
 def "groceries" { "Milk", "Eggs", "Bread" },
--- Define components which can be used within your templates!
 def "item" ( function(name) return li { name } end ),
 
 doctype "html",
--- Comments can be rendered!
 comment "This page was rendered with <3 by LTML",
 html {
     head {
@@ -32,21 +21,14 @@ html {
         p { data.message },
         p { cool_message },
         br,
-        -- Attributes and contents can be described in the same object!
         a { href = "https://justyn.is", "Check out my blog!" },
-        
-        -- Alternatively, you can define attributes and contents in chains.
         a { href = "https://github.com/tmpim/ltml" } "LTML is awesome!",
-        
         img { src = data.img },
         h2 "Grocery list:",
-        -- Dynamically generated content is easy!
         ul {
             map (groceries, item)
         }
     }
-}
-
 }
 ```
 
@@ -75,7 +57,9 @@ This renders to (prettified for readability):
     </body>
 </html>
 ```
-Example code for executing and rendering templates can be found in [example.lua](https://github.com/tmpim/ltml/blob/master/example.lua)
+A more explanatory version of this template can be found in [example/example.ltml.lua](example/example.ltml.lua)
+
+Example code for executing and rendering templates can be found in [example.lua](example.lua)
 
 # Disclaimer
 LTML is a very immature library and very much in testing, so utilize it with caution.
