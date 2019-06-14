@@ -57,9 +57,12 @@ This renders to (prettified for readability):
     </body>
 </html>
 ```
-A more explanatory version of this template can be found in [example/example.ltml.lua](example/example.ltml.lua)
+A more explanatory version of this template (and LTML as a whole) can be found in [example/example.ltml.lua](example/example.ltml.lua)
 
 Example code for executing and rendering templates can be found in [example.lua](example.lua)
 
 # Disclaimer
-LTML is a very immature library and very much in testing, so utilize it with caution.
+LTML is a very immature library, things are subject to change, and it is very much in testing, so utilize it with caution.
+
+# Contributing
+[Standard Lua style conventions](http://lua-users.org/wiki/LuaStyleGuide) should be followed when pushing to this repository.
