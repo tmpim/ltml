@@ -86,6 +86,7 @@ html {
 -- variable references with a table literal.
 --
         p { data.message },
+
         p { cool_message },
 --
 -- Again, all the element functions in LTML are actually already constructed tables,
@@ -107,16 +108,28 @@ html {
 --
         a { href = "https://github.com/tmpim/ltml" } "LTML is awesome!",
         br,
-        img { src = data.img },
-        h2 "Grocery list:",
+--
+-- `isdef(var)` is an alias for `cond` that simply returns `cond(env[var] ~= nil)`
+--
+        isdef "data.img" {
+            img { src = data.img }
+        }{},
+--
+-- `cond` is a function which selects from two values based on a conditional statement
+-- or boolean value. Keep in mind that you must supply two paths to it, or else your
+-- statement stays as a curried function and will never be inserted into the document.
+--
+        cond (#groceries > 0) {
+            h2 "Grocery list:",
 --
 -- `map` is a function in the default LTML environment that allows you to create elements
 -- by iterating over a table. It simply calls the function supplied in the second argument
 -- on every element in the table supplied in the first argument. The resulting elements
 -- are simply appended to the children of the parent element.
 --
-        ul {
-            map (groceries, item)
-        }
+            ul {
+                map (groceries, item)
+            }
+        }{}
     }
 }
