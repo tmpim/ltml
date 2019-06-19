@@ -23,14 +23,20 @@ local tagMetatable = {
     end
 }
 
+local tagCache = {}
+
 local sandboxMetatable = {
     __index = function(self, name)
-        if sandbox[name] then
+        if sandbox[name] and type(sandbox[name]) == "function" then
             return function(...)
                 return sandbox[name](self, ...)
             end
         elseif tags.lookup[name] then
-            return sandbox:tag(name)
+            if not tagCache[name] then
+                tagCache[name] = sandbox:tag(name)
+            end
+
+            return tagCache[name]
         end
     end
 }
