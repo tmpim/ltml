@@ -98,9 +98,15 @@ html {
 --
         a { href = "https://justyn.is", "Check out my blog!" },
 --
+-- Text elements can be anywhere in the tree. However, keep in mind that text elements
+-- are sanitized and therefore you should not attempt to place raw HTML in them.
+--
+        " ",
+--
 -- Alternatively, you can chain calls to an element to further add content or attributes.
 --
         a { href = "https://github.com/tmpim/ltml" } "LTML is awesome!",
+        br,
         img { src = data.img },
         h2 "Grocery list:",
 --
