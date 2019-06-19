@@ -198,4 +198,12 @@ function utils.loadTemplateFromFile(filename)
     return "return {" .. utils.readAll(filename) .. "}"
 end
 
+function utils.empty(t)
+    for k in pairs(t) do
+        t[k] = nil
+    end
+
+    return t
+end
+
 return utils
