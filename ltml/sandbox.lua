@@ -1,7 +1,13 @@
+--- The LTML sandbox module.
+-- Returns a function environment to
+-- be used when executing templates.
+-- @module ltml.sandbox
+-- @param env a table to use as the starting environment
+-- @return an ltml function environment
+local sandbox = {}
+
 local tags  = require("ltml.tags")
 local utils = require("ltml.utils")
-
-local sandbox = {}
 
 local tagMetatable = {
     __call = function(self, data)
@@ -78,6 +84,24 @@ function sandbox:map(list, func)
     end
 
     return results
+end
+
+function sandbox:cond(test)
+    return function(a)
+        return function(b)
+            a = a or {}
+            b = b or {}
+            if test then
+                return a
+            else
+                return b
+            end
+        end
+    end
+end
+
+function sandbox:isdef(var)
+    return sandbox:cond(utils.envGet(self, var) ~= nil)
 end
 
 return function(env)
