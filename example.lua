@@ -10,9 +10,11 @@ local data = {
     img     = "http://www.lua.org/manual/5.3/logo.gif"
 }
 
--- Alternatively, we could use `ltml.compile` and later
--- simply call it as a function instead of using execute.
-local htmlTree = ltml.execute(template, { data = data })
+-- Alternatively, we could use `ltml.execute` if we are
+-- only using it once. However, compile optimizes away
+-- a compilation step and makes templates run faster.
+local htmlTemplate = ltml.compile(template)
+local htmlTree = htmlTemplate({ data = data })
 
 -- `ltml.render` simply returns the raw rendered HTML as a string.
 local htmlSource = ltml.render(htmlTree)
