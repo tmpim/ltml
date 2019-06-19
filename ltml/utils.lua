@@ -188,7 +188,11 @@ function utils.envGet(env, name)
     local e = env
 
     for i, v in ipairs(name) do
-        e = e[v]
+        if e[v] == nil then
+            return nil
+        else
+            e = e[v]
+        end
     end
 
     return e
