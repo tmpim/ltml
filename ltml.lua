@@ -7,30 +7,27 @@ function ltml.execute(template, data, name)
     return ltml.compile(template, name)(data)
 end
 
-function ltml.compile(template, name)
-    local env = sandbox(data)
-
-    if type(template) == "function" then
-        template = string.dump(template)
-    end
-
-    local compiledTemplate
+local function reload(func, env, name)
     if setfenv then
-        compiledTemplate = loadstring(template, name)
-        setfenv(compiledTemplate, env)
+        func = loadstring(string.dump(func), name)
+        return setfenv(func, env)
     else
-        compiledTemplate = load(template, name, nil, env)
+        return load(string.dump(func), name, "b", env)
+    end
+end
+
+function ltml.compile(template, name)
+    local compiledTemplate
+    if type(template) == "function" then
+        compiledTemplate = template
+    elseif setfenv then
+        compiledTemplate = loadstring(template, name)
+    else
+        compiledTemplate = load(template, name, "t")
     end
 
     return function(data)
-        utils.empty(env)
-        if data then
-            utils.deepCopy(data)
-            utils.shallowCopy(data, env)
-        end
-
-        local result = {}
-        return utils.flatten(result, compiledTemplate())
+        return utils.flatten({}, reload(compiledTemplate, sandbox(data), name)())
     end
 end
 
