@@ -1,3 +1,5 @@
+--- The LTML utils module provides internal utility functions.
+-- @module ltml.utils
 local utils = {}
 
 function utils.keys(t)

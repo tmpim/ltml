@@ -1,10 +1,12 @@
+--- The tags module returns a list of LTML tag names
+-- and a quick string lookup.
+-- @module ltml.tags
 local tags = {}
 
+--- A table containing string names for all tags.
 tags.list = {
-    -- LTML special tags
     "comment",
     "doctype",
-    -- All HTML tags
     "a",
     "abbr",
     "acronym",
@@ -152,6 +154,7 @@ tags.list = {
     "xmp"
 }
 
+--- A string to boolean lookup for all tag names.
 tags.lookup = {}
 
 for _, v in pairs(tags.list) do

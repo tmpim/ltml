@@ -1,3 +1,5 @@
+--- The LTML render module renders LTML elements to HTML output.
+-- @module ltml.render
 local render = {}
 local utils = require("ltml.utils")
 

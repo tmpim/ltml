@@ -1,3 +1,5 @@
+--- The root LTML module provides functions to compile, execute and render templates.
+-- @module ltml
 local ltml = {}
 local sandbox = require("ltml.sandbox")
 local utils   = require("ltml.utils")
@@ -27,7 +29,17 @@ function ltml.compile(template, name)
     end
 
     return function(data)
-        return utils.flatten({}, reload(compiledTemplate, sandbox(data), name)())
+        -- Reload the functions environment by dumping and reloading it.
+        -- (Should be performant, as we aren't recompiling it)
+        local reloadedTemplate = reload(compiledTemplate, sandbox(data), name)
+
+        -- Call the template to get our unflattened tree
+        local unflattenedTree = reloadedTemplate()
+
+        -- Flatten the tree to ensure the its nice and balanced
+        local flattenedTree = utils.flatten({}, unflattenedTree)
+
+        return flattenedTree
     end
 end
 

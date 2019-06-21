@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../docs.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Class_Tag">Class Tag </a></li>
+<li><a href="#Class_Sandbox">Class Sandbox </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/ltml.html">ltml</a></li>
+  <li><strong>ltml.sandbox</strong></li>
+  <li><a href="../modules/ltml.render.html">ltml.render</a></li>
+  <li><a href="../modules/ltml.utils.html">ltml.utils</a></li>
+  <li><a href="../modules/ltml.tags.html">ltml.tags</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>ltml.sandbox</code></h1>
+<p>The LTML sandbox module returns a function environment
+ to be used when executing templates.</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#returns...">returns... ([env])</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Class_Tag">Class Tag </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Tag:__call">Tag:__call (data)</a></td>
+	<td class="summary">Modifies the tag immutably.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tag.name">Tag.name</a></td>
+	<td class="summary">The name of the tag.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tag.attributes">Tag.attributes</a></td>
+	<td class="summary">The attributes of the tag.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tag.children">Tag.children</a></td>
+	<td class="summary">The tag's children.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Sandbox">Class Sandbox </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Sandbox:tag">Sandbox:tag (name[, attributes[, children]])</a></td>
+	<td class="summary">Returns a constructed tag with given attributes and children.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Sandbox:raw">Sandbox:raw (data)</a></td>
+	<td class="summary">Takes a raw tag and passes it into <a href="../modules/ltml.sandbox.html#Sandbox:tag">tag</a>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Sandbox:def">Sandbox:def (name[, value])</a></td>
+	<td class="summary">Declares an environment variable.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Sandbox:map">Sandbox:map (list, func)</a></td>
+	<td class="summary">Iterates over a list of items and applies a function to all of them, returning a list of the results.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Sandbox:cond">Sandbox:cond (test[, yes[, no]])</a></td>
+	<td class="summary">Returns a selection of the two final values based on the first value.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Sandbox:isdef">Sandbox:isdef (var[, yes[, no]])</a></td>
+	<td class="summary">A helper function which checks if the variable is defined within the environment using <a href="../modules/ltml.sandbox.html#Sandbox:cond">cond</a>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "returns..."></a>
+    <strong>returns... ([env])</strong>
+    </dt>
+    <dd>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">env</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         A table to use as the starting environment.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="../modules/ltml.sandbox.html#Sandbox">Sandbox</a></span>
+        A Sandbox instance.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Tag"></a>Class Tag </h2>
+
+          <div class="section-description">
+          An LTML tag.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Tag:__call"></a>
+    <strong>Tag:__call (data)</strong>
+    </dt>
+    <dd>
+    Modifies the tag immutably.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         The attributes and children to apply to the tag.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="../modules/ltml.sandbox.html#Tag">Tag</a></span>
+        The modified tag.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Tag.name"></a>
+    <strong>Tag.name</strong>
+    </dt>
+    <dd>
+    The name of the tag.
+
+
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Tag.attributes"></a>
+    <strong>Tag.attributes</strong>
+    </dt>
+    <dd>
+    The attributes of the tag.
+
+
+    <ul>
+        <li><span class="parameter">attributes</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{[string]=string,...}</a> or <a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">{[string]=boolean,...}</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Tag.children"></a>
+    <strong>Tag.children</strong>
+    </dt>
+    <dd>
+    The tag's children.
+
+
+    <ul>
+        <li><span class="parameter">children</span>
+            <span class="types"><a class="type" href="../modules/ltml.sandbox.html#Tag">{Tag,...}</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Sandbox"></a>Class Sandbox </h2>
+
+          <div class="section-description">
+          An LTML sandbox environment.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Sandbox:tag"></a>
+    <strong>Sandbox:tag (name[, attributes[, children]])</strong>
+    </dt>
+    <dd>
+    Returns a constructed tag with given attributes and children.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The tag's name.
+        </li>
+        <li><span class="parameter">attributes</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         The tag's attributes.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">children</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         The tag's children.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        The constructed tag.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Sandbox:raw"></a>
+    <strong>Sandbox:raw (data)</strong>
+    </dt>
+    <dd>
+    Takes a raw tag and passes it into <a href="../modules/ltml.sandbox.html#Sandbox:tag">tag</a>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         The raw tag.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        The constructed tag.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Sandbox:def"></a>
+    <strong>Sandbox:def (name[, value])</strong>
+    </dt>
+    <dd>
+    Declares an environment variable.
+ This function is optionally curried.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         A variable path name. Can be separated by dots to define variables in table structures.
+        </li>
+        <li><span class="parameter">value</span>
+         The value to set the variable to.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Sandbox:map"></a>
+    <strong>Sandbox:map (list, func)</strong>
+    </dt>
+    <dd>
+    Iterates over a list of items and applies a function to all of them, returning a list of the results.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">list</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         The list of items to iterate over.
+        </li>
+        <li><span class="parameter">func</span>
+            <span class="types"><span class="type">function</span></span>
+         The function to apply.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        The list of results.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Sandbox:cond"></a>
+    <strong>Sandbox:cond (test[, yes[, no]])</strong>
+    </dt>
+    <dd>
+    Returns a selection of the two final values based on the first value.
+ This function is optionally curried.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">test</span>
+            <span class="types"><span class="type">boolean</span></span>
+         The boolean value to act on.
+        </li>
+        <li><span class="parameter">yes</span>
+         The value to return when test is truthy.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">no</span>
+         The value to return when test is falsy.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The value of yes if test is truthy, or the value of no if test is falsy.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Sandbox:isdef"></a>
+    <strong>Sandbox:isdef (var[, yes[, no]])</strong>
+    </dt>
+    <dd>
+    A helper function which checks if the variable is defined within the environment using <a href="../modules/ltml.sandbox.html#Sandbox:cond">cond</a>.
+ This function is optionally curried.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">var</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The name of the variable to check for. Can be dot separated for variables within tables.
+        </li>
+        <li><span class="parameter">yes</span>
+         The value to return when the variable is defined.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">no</span>
+         The value to return when the variable is not defined.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The value of yes if the variable is defined, or the value of no if the variable is not defined.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2019-06-20 18:43:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
