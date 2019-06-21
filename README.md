@@ -1,3 +1,4 @@
+[![Documentation](https://img.shields.io/badge/-docs-blue.svg?style=flat-square)](https://tmpim.github.io/ltml) [![Travis build status](https://img.shields.io/travis/tmpim/ltml.svg?style=flat-square)](https://travis-ci.org/tmpim/ltml) [![MIT License](https://img.shields.io/github/license/tmpim/ltml.svg?style=flat-square)](LICENSE)
 # LTML
 A simple and concise templating engine that takes advantage of elegant Lua syntax.
 
