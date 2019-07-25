@@ -1,12 +1,17 @@
-[![Documentation](https://img.shields.io/badge/-docs-blue.svg?style=flat-square)](https://tmpim.github.io/ltml) [![Travis build status](https://img.shields.io/travis/tmpim/ltml.svg?style=flat-square)](https://travis-ci.org/tmpim/ltml) [![MIT License](https://img.shields.io/github/license/tmpim/ltml.svg?style=flat-square)](LICENSE) [![Discord](https://img.shields.io/discord/591488795040546818.svg?style=flat-square)](https://discord.gg/gd4KZvE)
 # LTML
+
+[![Documentation](https://img.shields.io/badge/-docs-blue.svg?style=flat-square)](https://tmpim.github.io/ltml) [![Travis build status](https://img.shields.io/travis/tmpim/ltml.svg?style=flat-square)](https://travis-ci.org/tmpim/ltml) [![MIT License](https://img.shields.io/github/license/tmpim/ltml.svg?style=flat-square)](LICENSE) [![Discord](https://img.shields.io/discord/591488795040546818.svg?style=flat-square)](https://discord.gg/gd4KZvE)
+
 A simple and concise templating engine that takes advantage of elegant Lua syntax.
 
-# Explanation
+## Explanation
+
 LTML utilizes Lua's tables and optional parentheses around table and string literals to allow for a simple template syntax that can be easily rendered as HTML. LTML is portable enough to run in any typical Lua environment, given you can use `setfenv` (<5.1) or `load` (5.2+). It is even possible to [run LTML in the browser](https://github.com/tmpim/ltml-react).
 
-# Example
+## Example
+
 ```lua
+
 def "cool_message" ( data.message:reverse() ),
 def "groceries" { "Milk", "Eggs", "Bread" },
 def "item" ( function(name) return li { name } end ),
@@ -34,6 +39,7 @@ html {
 ```
 
 This renders to (prettified for readability):
+
 ```html
 <!DOCTYPE html>
 <!-- This page was rendered with <3 by LTML -->
@@ -58,12 +64,15 @@ This renders to (prettified for readability):
     </body>
 </html>
 ```
+
 A more explanatory version of this template (and LTML as a whole) can be found in [example/example.ltml.lua](example/example.ltml.lua)
 
 Example code for executing and rendering templates can be found in [example.lua](example.lua)
 
-# Disclaimer
+## Disclaimer
+
 LTML is a very immature library, things are subject to change, and it is very much in testing, so utilize it with caution.
 
-# Contributing
+## Contributing
+
 [Standard Lua style conventions](http://lua-users.org/wiki/LuaStyleGuide) should be followed when pushing to this repository.
