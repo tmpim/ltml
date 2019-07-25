@@ -14,7 +14,7 @@ before_install:
   - source lua_install/bin/activate
 
 install:
-  - luarocks make
+  - luarocks make ltml/rockspec/ltml-scm-1.rockspec
 
 script:
   - lua test.lua

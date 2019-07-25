@@ -65,9 +65,9 @@ This renders to (prettified for readability):
 </html>
 ```
 
-A more explanatory version of this template (and LTML as a whole) can be found in [example/example.ltml.lua](example/example.ltml.lua)
+A more explanatory version of this template (and LTML as a whole) can be found in [ltml/example/example.ltml.lua](ltml/example/example.ltml.lua)
 
-Example code for executing and rendering templates can be found in [example.lua](example.lua)
+Example code for executing and rendering templates can be found in [ltml/example/example.lua](ltml/example/example.lua)
 
 ## Disclaimer
 

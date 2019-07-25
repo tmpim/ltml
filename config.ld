@@ -6,6 +6,5 @@ format = "markdown"
 dir = "docs"
 
 file = {
-    "ltml.lua",
     "ltml"
 }

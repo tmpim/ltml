@@ -1,7 +1,6 @@
 local ltml = require("ltml")
 local utils = require("ltml.utils")
 local sandbox_tests = {}
-
 local execute = ltml.execute
 
 function sandbox_tests.boilerplate()

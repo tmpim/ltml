@@ -2,16 +2,16 @@ local utils = require("ltml.utils")
 local color = utils.color
 
 local test_imports = {
-    "render_tests",
-    "sandbox_tests",
-    "util_tests"
+    "ltml.tests.render_tests",
+    "ltml.tests.sandbox_tests",
+    "ltml.tests.util_tests"
 }
 
 local tests = {}
 local testCount = 0
 
 for _, v in pairs(test_imports) do
-    tests[v] = require("tests." .. v)
+    tests[v] = require(v)
 
     for _ in pairs(tests[v]) do
         testCount = testCount + 1
