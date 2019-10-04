@@ -1,3 +1,6 @@
+# Project Status
+If you're here and reading this, thanks for being interested in LTML! Unfortunately, this project is on hiatus due to the main maintainer (me, Justyn) being busy searching for employment. If for some reason you have tips as to places I can get a job, you can find my email on my GitHub profile [here](https://github.com/Lustyn).
+
 # LTML
 
 [![Documentation](https://img.shields.io/badge/-docs-blue.svg?style=flat-square)](https://tmpim.github.io/ltml) [![Travis build status](https://img.shields.io/travis/tmpim/ltml.svg?style=flat-square)](https://travis-ci.org/tmpim/ltml) [![MIT License](https://img.shields.io/github/license/tmpim/ltml.svg?style=flat-square)](LICENSE) [![Discord](https://img.shields.io/discord/591488795040546818.svg?style=flat-square)](https://discord.gg/gd4KZvE)
